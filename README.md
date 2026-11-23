@@ -106,19 +106,3 @@ cesium-skills/
             ├── postprocessing-atmosphere.md
             └── pointcloud-voxel-splats.md
 ```
-
----
-
-## 后续随 Cesium 新版本增量更新
-
-当 Cesium 发布新版本（例如 `1.149`、`1.150`）时，先更新本地 Cesium 源码仓库，再运行内置脚本只提取新增版本：
-
-```powershell
-# 1. 提取新版本的 CHANGES.md 变更
-node scripts/extract-changes.mjs --input "d:/Users/Downloads/cesium/CHANGES.md" --from 1.149 --out "./tmp-extract"
-
-# 2. 如有需要，重新扫描 Sandcastle2 示例
-node scripts/index-sandcastle.mjs "./tmp-sandcastle"
-```
-
-根据提取结果增量更新 `SKILL.md` 与 `references/`，更新版本号记录后提交 Git 并推送至 GitHub（用完可删除临时目录）。
