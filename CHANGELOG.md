@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.0 - 2026-11-23
+
+- Added `skills/cesium-recipes` distilled from `Apps/Sandcastle2/gallery` (234 non-dev examples across 30+ labels):
+  - `SKILL.md` scenario router + 9 UI-free minimal code recipe files (`terrain-imagery.md`, `3dtiles-models.md`, `entities-vector-geometries.md`, `styling-materials-shaders.md`, `animation-czml.md`, `camera-picking-snapping.md`, `clipping-clamping-classification.md`, `postprocessing-atmosphere.md`, `pointcloud-voxel-splats.md`).
+- Added `scripts/index-sandcastle.mjs` for re-indexing `Sandcastle2/gallery` on future Cesium releases.
+
 ## 0.1.0 - 2026-11-23
 
 - **Synced CesiumJS Version**: `1.100` → `1.148`

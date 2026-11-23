@@ -2,8 +2,10 @@
 
 从 CesiumJS 官方 `CHANGES.md`（**`1.100` ～ `1.148`**）提炼的现代 CesiumJS 开发规范与避坑指南，用于避免使用已废弃 API、过期语法和低效模式，并作为可随 Cesium 版本持续增量更新的独立 Git 仓库。
 
-- **当前同步基线**：`CesiumJS 1.148`（覆盖 `1.100` 现代分包架构至 `1.148`）
-- **核心产物**：[skills/cesium-modern-dev/SKILL.md](skills/cesium-modern-dev/SKILL.md)
+- **当前同步基线**：`CesiumJS 1.148`（覆盖 `1.100`～`1.148` 变更规范 + `Apps/Sandcastle2/gallery` 234 个官方示例场景模板）
+- **核心产物**：
+  - [skills/cesium-modern-dev/SKILL.md](skills/cesium-modern-dev/SKILL.md)：API 红线、版本迁移与避坑约束
+  - [skills/cesium-recipes/SKILL.md](skills/cesium-recipes/SKILL.md)：按场景分类的去 UI 壳子最小可运行代码模板
 
 ## 目录结构
 
@@ -12,15 +14,28 @@ cesium-skills/
 ├── README.md
 ├── CHANGELOG.md
 ├── scripts/
-│   └── extract-changes.mjs          # 零依赖 Node.js 增量提取脚本
+│   ├── extract-changes.mjs          # 零依赖 Node.js 增量提取 CHANGES.md 脚本
+│   └── index-sandcastle.mjs         # 零依赖 Node.js 扫描 Sandcastle2/gallery 脚本
 └── skills/
-    └── cesium-modern-dev/
-        ├── SKILL.md                 # 主 Skill（核心规则、反模式、场景索引）
+    ├── cesium-modern-dev/           # API 规范、废弃替换与避坑
+    │   ├── SKILL.md
+    │   └── references/
+    │       ├── package-migration.md
+    │       ├── deprecated-apis.md
+    │       ├── tiles-models-vector.md
+    │       └── performance-pitfalls.md
+    └── cesium-recipes/              # 场景化固定写法与最小代码模板
+        ├── SKILL.md
         └── references/
-            ├── package-migration.md     # 包结构拆分、ESM/TS、ES2022 环境基线
-            ├── deprecated-apis.md       # 1.100~1.148 废弃与移除 API 替换对照表
-            ├── tiles-models-vector.md   # 3D Tiles / glTF / Shader / 矢量 / 裁剪新特性
-            └── performance-pitfalls.md  # 性能优化、行为变更与常见踩坑清单
+            ├── terrain-imagery.md
+            ├── 3dtiles-models.md
+            ├── entities-vector-geometries.md
+            ├── styling-materials-shaders.md
+            ├── animation-czml.md
+            ├── camera-picking-snapping.md
+            ├── clipping-clamping-classification.md
+            ├── postprocessing-atmosphere.md
+            └── pointcloud-voxel-splats.md
 ```
 
 ## 如何在项目中使用
