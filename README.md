@@ -89,7 +89,7 @@ cesium-skills/
     │   ├── SKILL.md                           # 主规范文件（核心红线、反模式与索引）
     │   └── references/
     │       ├── package-migration.md           # @cesium/core 分包、ESM/TS 与 ES2022 基线
-    │       ├── deprecated-apis.md             # 1.100~1.148 废弃与已移除 API 替换对照表
+    │       ├── deprecated-apis.md             # 1.92~1.148 废弃与已移除 API 替换对照表
     │       ├── tiles-models-vector.md         # 3D Tiles/glTF/Shader/矢量/裁剪现代规范
     │       └── performance-pitfalls.md        # 行为变更、WebGL2/Shader 与内存泄漏排查
     └── cesium-recipes/                        # 场景化固定写法与最小代码模板 Skill
