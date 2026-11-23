@@ -14,6 +14,7 @@ Load the matching reference file for copy-pasteable minimal snippets, parameter 
 
 | Development Scenario | Covered Sandcastle Labels | Reference File |
 | :--- | :--- | :--- |
+| **Getting Started, Offline & Performance** (`CesiumWidget`, offline setup, HTML overlays, `requestRenderMode`, `resolutionScale`) | `Getting Started`, `Performance`, `Showcases` | [references/getting-started-performance.md](references/getting-started-performance.md) |
 | **Terrain & Imagery** (World Terrain, ArcGIS, Custom Heightmap, WMS/WMTS, Layers, Split) | `Terrain`, `Imagery`, `Imagery, Showcases` | [references/terrain-imagery.md](references/terrain-imagery.md) |
 | **3D Tiles & glTF Models** (ion/URL loading, height offset, BIM/iTwin, PBR, EdgeDisplayMode) | `3D Tiles`, `3D Models`, `Photogrammetry`, `ion Assets`, `iTwin` | [references/3dtiles-models.md](references/3dtiles-models.md) |
 | **Entities, Vector & Geometries** (GeoJSON, MVT, `BufferPrimitiveCollection`, Labels, Shapes) | `Entities`, `Geometries`, `DataSources`, `Vector Tiles`, `Labels` | [references/entities-vector-geometries.md](references/entities-vector-geometries.md) |

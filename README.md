@@ -27,6 +27,7 @@ cesium-skills/
     └── cesium-recipes/              # 场景化固定写法与最小代码模板
         ├── SKILL.md
         └── references/
+            ├── getting-started-performance.md
             ├── terrain-imagery.md
             ├── 3dtiles-models.md
             ├── entities-vector-geometries.md

@@ -14,6 +14,10 @@ const outDir =
 
 const CATEGORY_MAP = [
   {
+    file: "getting-started-performance",
+    labels: ["Getting Started", "Performance", "Showcases"],
+  },
+  {
     file: "terrain-imagery",
     labels: ["Terrain", "Imagery", "Imagery, Showcases"],
   },
