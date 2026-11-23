@@ -1,11 +1,11 @@
 ---
 name: cesium-modern-dev
-description: Modern CesiumJS (>= 1.100, synced to 1.148) development guidelines, package import rules, async loading patterns, deprecated/removed API replacements, and performance best practices. Use whenever writing, reviewing, or migrating CesiumJS / @cesium/core / @cesium/engine / @cesium/widgets code to avoid outdated patterns.
+description: Modern CesiumJS (>= 1.92, synced to 1.148) development guidelines, package import rules, async loading patterns, deprecated/removed API replacements, and performance best practices. Use whenever writing, reviewing, or migrating CesiumJS / @cesium/core / @cesium/engine / @cesium/widgets code to avoid outdated patterns.
 ---
 
 # CesiumJS Modern Development Skill
 
-> **Synced Baseline**: CesiumJS `1.100` – `1.148` (2022-12 to 2026-12)
+> **Synced Baseline**: CesiumJS `1.92` – `1.148` (2022-04 to 2026-12)
 
 Follow these rules whenever authoring, refactoring, or reviewing CesiumJS code so you never emit removed APIs, deprecated imports, or legacy WebGL1 patterns.
 
@@ -19,7 +19,8 @@ Follow these rules whenever authoring, refactoring, or reviewing CesiumJS code s
 
 ## 2. Modern Async Loading & Core Syntax Rules
 
-- **No `readyPromise` (`>= 1.107`)**: `readyPromise` and `options.url` constructors are removed across `Cesium3DTileset`, `Model`, `ImageryProvider`, `TerrainProvider`, `I3SDataProvider`, and `Primitive`s. Always use `async/await` static factories:
+- **No `Cesium.when` (`>= 1.92`)**: `Cesium.when` is removed; always use native `Promise` and `async/await`.
+- **No `readyPromise` (`>= 1.107`)**: `readyPromise` and `options.url` constructors are removed across `Cesium3DTileset`, `Model`, `ImageryProvider`, `TerrainProvider`, `I3SDataProvider`, and `Primitive`s (and `Cesium3DTileStyle.readyPromise` removed in `1.96` → `Cesium3DTileStyle.fromUrl`). Always use `async/await` static factories:
   - `await Cesium3DTileset.fromUrl(url, options)`
   - `await Model.fromGltfAsync({ url, ... })` (listen to `model.readyEvent` / `model.errorEvent`)
   - `await createWorldTerrainAsync()` / `await createOsmBuildingsAsync()` / `await createWorldImageryAsync()`
@@ -30,6 +31,8 @@ Follow these rules whenever authoring, refactoring, or reviewing CesiumJS code s
 - **No `new` on static factory methods (`>= 1.139`)**: `Cartesian2`, `Cartesian3`, `Cartesian4` are ES6 classes; calling `new Cartesian3.fromArray(...)` throws. Always omit `new` on static factories.
 - **No `Matrix4.fromCamera` (`>= 1.146`)**: Deprecated (removed in `1.151`). Use `camera.viewMatrix` or `Matrix4.computeView(...)`.
 - **Other key removals**:
+  - `ImagerySplitPosition` / `Scene.imagerySplitPosition` → `SplitDirection` / `Scene.splitPosition` (`1.94`)
+  - `Cesium3DTileFeature.getPropertyNames` / `ModelFeature.getPropertyNames` → `.getPropertyIds()` (`1.98`)
   - `Cesium3DTileset.maximumMemoryUsage` → `cacheBytes` + `maximumCacheOverflowBytes` (`1.110`)
   - `Globe.terrainExaggeration*` → `Scene.verticalExaggeration*` (`1.116`)
   - `Cesium3DTileset.disableCollision` → `Cesium3DTileset.enableCollision` (`1.116`, default `false` since `1.115`)

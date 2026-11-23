@@ -35,10 +35,17 @@ Never use `readyPromise`, `.ready` on providers, or pass `url`/`assetId` directl
 | `ImageryLayer.getViewableRectangle()` | `ImageryLayer.getImageryRectangle()` |
 | `CreditDisplay.addCredit` / `addDefaultCredit` / `removeDefaultCredit` | `CreditDisplay.addCreditToNextFrame` / `addStaticCredit` / `removeStaticCredit` |
 
-## 3. General Engine APIs (`1.110` – `1.148`)
+## 3. General Engine APIs (`1.92` – `1.148`)
 
 | Version | Legacy / Deprecated / Removed | Modern Replacement / Status |
 | :--- | :--- | :--- |
+| `1.92` | `Cesium.when` | Removed; use native `Promise` / `async` / `await` |
+| `1.94` | `ImagerySplitPosition` / `Scene.imagerySplitPosition` | `SplitDirection` / `Scene.splitPosition` |
+| `1.94` | Individual IBL options on `Model` / `Cesium3DTileset` | `ImageBasedLighting` |
+| `1.96` | `Cesium3DTileStyle.readyPromise` / `ready` / URL constructor | `await Cesium3DTileStyle.fromUrl(url)` |
+| `1.97` | glTF 1.0, `KHR_techniques_webgl`, `KHR_materials_common`, `new Model()` | Use glTF 2.0, `CustomShader`, and `Model.fromGltfAsync()` |
+| `1.98` | `Cesium3DTileFeature.getPropertyNames()` / `ModelFeature.getPropertyNames()` | `.getPropertyIds()` |
+| `1.99` | `requestAnimationFrame` / `cancelAnimationFrame` polyfills | Removed; use native browser methods |
 | `1.100` | `KmlTour.prototype.play(viewer)` | Pass `CesiumWidget` instead of `Viewer` |
 | `1.102` | `ContextOptions.requestWebgl2` | Removed; WebGL2 is default. Use `requestWebgl1: true` only if WebGL1 is needed |
 | `1.110` | `Cesium3DTileset.maximumMemoryUsage` | `Cesium3DTileset.cacheBytes` + `Cesium3DTileset.maximumCacheOverflowBytes` |

@@ -2,7 +2,7 @@
 
 ## 0.2.0 - 2026-11-23
 
-- **同步 CesiumJS 基线（Baseline）**：`1.148`
+- **同步 CesiumJS 基线（Baseline）**：`1.92` → `1.148`（补充 `1.92`～`1.99` 关键破坏性变更：移除 `Cesium.when` 改用原生 `Promise`、放弃 AMD 转向 ESM、`getPropertyIds`、`SplitDirection`、`Cesium3DTileStyle.fromUrl`、glTF 2.0 + `CustomShader` 等）。
 - **新增 `cesium-recipes` 场景代码模板 Skill**：基于 `Apps/Sandcastle2/gallery`（234 个非 `-dev` 官方示例、覆盖 30+ 标签（Labels））提炼：
   - `SKILL.md` 场景速查路由表 + 10 份去 UI 壳子（UI-free）的最小可运行代码模板（覆盖入门与性能 `getting-started-performance.md`、地形与影像 `terrain-imagery.md`、3D Tiles 与模型 `3dtiles-models.md`、实体与矢量几何 `entities-vector-geometries.md`、样式/材质与着色器 `styling-materials-shaders.md`、动画与插值 `animation-czml.md`、相机/拾取与吸附 `camera-picking-snapping.md`、裁剪/贴地与分类 `clipping-clamping-classification.md`、后处理与大气 `postprocessing-atmosphere.md`、点云/体素与高斯泼溅 `pointcloud-voxel-splats.md`）。
 - **新增与优化辅助脚本**：

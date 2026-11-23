@@ -4,6 +4,9 @@
 
 | Version | Change | Action Required |
 | :--- | :--- | :--- |
+| `1.92` | `Cesium.when` removed in favor of native `Promise`. | Use native `Promise` / `async` / `await`. |
+| `1.96` | Built `Cesium.js` dropped AMD format; `Build/Cesium/index.js` for ESM. | Use ESM imports; do not rely on AMD globals. |
+| `1.99` | `requestAnimationFrame` / `cancelAnimationFrame` polyfills removed. | Use native browser APIs. |
 | `1.100` | Monorepo split into `@cesium/engine` and `@cesium/widgets` alongside `cesium`. Published as ESM with `.d.ts`. Deep file imports removed. | Always import from `"cesium"`, `"@cesium/engine"`, or `"@cesium/widgets"`. Never import internal paths. |
 | `1.109` | `TaskProcessor` loads workers as ESM instead of AMD. Minimum Firefox 114. | Ensure bundler/server serves worker scripts as ES modules. |
 | `1.114` | `Resource` no longer depends on Node built-ins (`http`, `https`, `url`, `zlib`). | Remove legacy Node polyfill/external workarounds from Vite/Webpack configs. `RequestErrorEvent.response` in Node is now a standard `Response` object. |
