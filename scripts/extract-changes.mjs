@@ -1,15 +1,25 @@
 #!/usr/bin/env node
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 /**
  * Parse Cesium CHANGES.md and extract changes for a version range (e.g., >= 1.100).
  * Zero third-party dependencies. Reusable for future incremental updates (e.g. --from 1.149).
  */
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const DEFAULT_CESIUM_CHANGES = path.resolve(
+  __dirname,
+  "..",
+  "..",
+  "cesium",
+  "CHANGES.md"
+);
+
 function parseArgs(argv) {
   const args = {
-    input: "d:/Users/Downloads/cesium/CHANGES.md",
+    input: DEFAULT_CESIUM_CHANGES,
     from: "1.100",
     to: null,
     outDir: null,

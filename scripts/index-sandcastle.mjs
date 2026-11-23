@@ -1,16 +1,19 @@
 #!/usr/bin/env node
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 /**
  * Scan Cesium Apps/Sandcastle2/gallery/<id>/sandcastle.yaml & main.js,
  * group by development categories, and output compact inspection bundles.
  */
 
-const galleryDir = "d:/Users/Downloads/cesium/Apps/Sandcastle2/gallery";
-const outDir =
-  process.argv[2] ||
-  "C:/Users/Lenovo/.gemini/antigravity/brain/b2ed7dcd-5bb9-493f-8eab-3f34a5c51ffa/scratch/sandcastle_index";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const repoRoot = path.resolve(__dirname, "..");
+const galleryDir =
+  process.argv[3] ||
+  path.resolve(repoRoot, "..", "cesium", "Apps", "Sandcastle2", "gallery");
+const outDir = process.argv[2] || path.resolve(repoRoot, "tmp-sandcastle");
 
 const CATEGORY_MAP = [
   {
