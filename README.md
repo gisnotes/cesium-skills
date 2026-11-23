@@ -50,11 +50,28 @@
 └── package.json
 ```
 
-### 日常怎么向 AI 提问？
+### 日常怎么向 AI 提问？（提示词模板）
 
-挂载成功后，正常让 AI 写 Cesium 代码即可；如果希望它更精准地调用，可以在提示词里带上一句：
-- **写新功能**：“请参考 `cesium-recipes` 和 `cesium-modern-dev`，帮我写一个加载 Cesium World Terrain 并实现路径插值飞行的最小示例。”
-- **排查/升级旧代码**：“请对照 `cesium-modern-dev`，检查我这段 Cesium 代码里有没有已废弃的 API 或过时导入。”
+挂载成功后，你在和 AI 对话时用**中文**正常提问即可（Skill 内部规则文件为英文编写以保证 AI 对 API 术语的识别精度，但 AI 会按你的提问语言用中文回复你并输出代码）。
+
+下面这些提示词可以直接复制修改使用：
+
+1. **从零写新功能（推荐同时带上两个 Skill）**
+   > 请先参考 `cesium-modern-dev` 和 `cesium-recipes`，帮我写一段 Cesium 代码：加载 Cesium World Terrain 地形和 3D Tiles 建筑白膜，要求使用现代异步 API，不要使用已废弃的接口。
+
+2. **按特定场景写模板（地形 / 轨迹插值 / 裁剪 / 材质等）**
+   > 请参考 `cesium-recipes` 中的动画与插值模板，帮我用 `SampledPositionProperty` 实现一条平滑飞行的飞机轨迹（使用 Lagrange 插值），并确保符合 `cesium-modern-dev` 的规范。
+
+   > 请参考 `cesium-recipes` 的裁剪模板，用 `ClippingPolygonCollection` 对 3D Tiles 做区域挖洞裁剪，并注意 `cesium-modern-dev` 中的不可变坐标约束。
+
+3. **升级/审查老旧代码（防废弃 API 踩坑）**
+   > 请对照 `cesium-modern-dev` 的规范，检查我下面这段 Cesium 代码，指出里面所有已废弃的 API（如 `readyPromise`、旧的 `@cesium/engine` 导入、`defaultValue` 等），并帮我改写成适配 Cesium 1.148 的现代写法：
+   > ```js
+   > // 粘贴你的旧代码
+   > ```
+
+4. **排查性能或渲染异常**
+   > 我的 Cesium 场景在开启贴地或 3D Tiles 裁剪后出现阴影异常 / 内存增长 / 卡顿，请对照 `cesium-modern-dev` 的 `performance-pitfalls.md` 帮我排查原因并给出优化建议。
 
 ---
 
