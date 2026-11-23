@@ -25,27 +25,55 @@
 
 1. 先把本仓库克隆到本地固定目录（例如 `d:\Users\Downloads\cesium-skills`）：
    ```powershell
-   git clone <你的GitHub仓库地址> d:\Users\Downloads\cesium-skills
+   git clone https://github.com/gisnotes/cesium-skills.git d:\Users\Downloads\cesium-skills
    ```
-2. 将 `skills/` 下的两个目录**软链接**（或直接复制）到 Antigravity 的全局 Skills 目录 `C:\Users\<你的用户名>\.gemini\antigravity\skills\`（macOS/Linux 为 `~/.gemini/antigravity/skills/`）：
-   ```powershell
-   # Windows PowerShell（无需管理员权限也可用 Junction 目录联接）
-   New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.gemini\antigravity\skills"
-   cmd /c mklink /J "$env:USERPROFILE\.gemini\antigravity\skills\cesium-modern-dev" "d:\Users\Downloads\cesium-skills\skills\cesium-modern-dev"
-   cmd /c mklink /J "$env:USERPROFILE\.gemini\antigravity\skills\cesium-recipes" "d:\Users\Downloads\cesium-skills\skills\cesium-recipes"
-   ```
-   > 用软链接（`mklink /J`）的好处：以后你 `git pull` 更新仓库，所有项目的 AI 都会自动用到最新版 Skills，不需要重新复制。
+2. 根据你使用的 AI 编程工具，将 `skills/cesium-modern-dev` 和 `skills/cesium-recipes` 两个目录**软链接**（或直接复制）到对应的全局 Skills 目录：
+
+| AI Agent / 工具 | 全局 Skills 目录（Windows 可用 `%USERPROFILE%` 替代 `~`） | 项目级 Skills 目录（放到业务项目根目录下） |
+| :--- | :--- | :--- |
+| **Trae**（字节跳动） | `~/.trae/skills/` | `.trae/skills/` |
+| **WorkBuddy / CodeBuddy**（腾讯） | `~/.workbuddy/skills/` 或 `~/.codebuddy/skills/` | `.codebuddy/skills/` |
+| **Antigravity**（Google） | `~/.gemini/antigravity/skills/` | `.gemini/skills/` |
+| **Cursor** | `~/.cursor/skills/` | `.cursor/skills/` |
+| **Claude Code** | `~/.claude/skills/` | `.claude/skills/` |
+
+> **注意**：所有工具都会扫描 Skills 目录下的**一级子目录**，请确保最终路径结构是 `<目标skills目录>/cesium-modern-dev/SKILL.md` 和 `<目标skills目录>/cesium-recipes/SKILL.md`。
+
+**Windows PowerShell 一键软链接示例**（无需管理员权限，以 Trae / WorkBuddy / Antigravity 为例，按自己用的工具选对应两行执行即可）：
+
+```powershell
+# 示例 A：挂载到 Trae 全局目录
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.trae\skills"
+cmd /c mklink /J "$env:USERPROFILE\.trae\skills\cesium-modern-dev" "d:\Users\Downloads\cesium-skills\skills\cesium-modern-dev"
+cmd /c mklink /J "$env:USERPROFILE\.trae\skills\cesium-recipes" "d:\Users\Downloads\cesium-skills\skills\cesium-recipes"
+
+# 示例 B：挂载到 WorkBuddy 全局目录（CodeBuddy 请将 .workbuddy 替换为 .codebuddy）
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.workbuddy\skills"
+cmd /c mklink /J "$env:USERPROFILE\.workbuddy\skills\cesium-modern-dev" "d:\Users\Downloads\cesium-skills\skills\cesium-modern-dev"
+cmd /c mklink /J "$env:USERPROFILE\.workbuddy\skills\cesium-recipes" "d:\Users\Downloads\cesium-skills\skills\cesium-recipes"
+
+# 示例 C：挂载到 Antigravity 全局目录
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.gemini\antigravity\skills"
+cmd /c mklink /J "$env:USERPROFILE\.gemini\antigravity\skills\cesium-modern-dev" "d:\Users\Downloads\cesium-skills\skills\cesium-modern-dev"
+cmd /c mklink /J "$env:USERPROFILE\.gemini\antigravity\skills\cesium-recipes" "d:\Users\Downloads\cesium-skills\skills\cesium-recipes"
+
+# 示例 D：挂载到 Claude Code（含 Claude Code App）全局目录（Cursor 请将 .claude 替换为 .cursor）
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\skills"
+cmd /c mklink /J "$env:USERPROFILE\.claude\skills\cesium-modern-dev" "d:\Users\Downloads\cesium-skills\skills\cesium-modern-dev"
+cmd /c mklink /J "$env:USERPROFILE\.claude\skills\cesium-recipes" "d:\Users\Downloads\cesium-skills\skills\cesium-recipes"
+```
+
+> 用软链接（`mklink /J`）的好处：以后你 `git pull` 更新仓库，所有项目的 AI 都会自动用到最新版 Skills，不需要重新复制。
 
 ### 方式二：单个项目挂载（适合团队共享）
 
-如果你只想在某一个 Cesium 项目里使用，把 `skills/cesium-modern-dev` 和 `skills/cesium-recipes` 复制（或软链接）到**那个业务项目根目录的 `.gemini/skills/`** 下即可：
+如果你只想在某一个 Cesium 项目里使用，把 `skills/cesium-modern-dev` 和 `skills/cesium-recipes` 复制（或软链接）到**那个业务项目根目录对应的 `.trae/skills/`、`.codebuddy/skills/`、`.gemini/skills/` 或 `.cursor/skills/`** 下即可：
 
 ```text
 你的业务项目/
-├── .gemini/
-│   └── skills/
-│       ├── cesium-modern-dev/
-│       └── cesium-recipes/
+├── .trae/skills/（或 .codebuddy/skills/、.gemini/skills/）
+│   ├── cesium-modern-dev/
+│   └── cesium-recipes/
 ├── src/
 └── package.json
 ```
