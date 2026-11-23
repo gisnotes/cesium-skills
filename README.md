@@ -79,30 +79,30 @@
 
 ```text
 cesium-skills/
-├── README.md
-├── CHANGELOG.md
+├── README.md                                  # 仓库说明、挂载教程与 AI 提问提示词指南
+├── CHANGELOG.md                               # 版本更新日志（记录同步的 Cesium 基线与改动）
 ├── scripts/
-│   ├── extract-changes.mjs          # 零依赖 Node.js 增量提取 CHANGES.md 脚本
-│   └── index-sandcastle.mjs         # 零依赖 Node.js 扫描 Sandcastle2/gallery 脚本
+│   ├── extract-changes.mjs                    # 零依赖 Node.js 增量提取 CHANGES.md 脚本
+│   └── index-sandcastle.mjs                   # 零依赖 Node.js 扫描 Sandcastle2/gallery 脚本
 └── skills/
-    ├── cesium-modern-dev/           # API 规范、废弃替换与避坑
-    │   ├── SKILL.md
+    ├── cesium-modern-dev/                     # API 规范、废弃替换与避坑 Skill
+    │   ├── SKILL.md                           # 主规范文件（核心红线、反模式与索引）
     │   └── references/
-    │       ├── package-migration.md
-    │       ├── deprecated-apis.md
-    │       ├── tiles-models-vector.md
-    │       └── performance-pitfalls.md
-    └── cesium-recipes/              # 场景化固定写法与最小代码模板
-        ├── SKILL.md
+    │       ├── package-migration.md           # @cesium/core 分包、ESM/TS 与 ES2022 基线
+    │       ├── deprecated-apis.md             # 1.100~1.148 废弃与已移除 API 替换对照表
+    │       ├── tiles-models-vector.md         # 3D Tiles/glTF/Shader/矢量/裁剪现代规范
+    │       └── performance-pitfalls.md        # 行为变更、WebGL2/Shader 与内存泄漏排查
+    └── cesium-recipes/                        # 场景化固定写法与最小代码模板 Skill
+        ├── SKILL.md                           # 场景速查路由总表
         └── references/
-            ├── getting-started-performance.md
-            ├── terrain-imagery.md
-            ├── 3dtiles-models.md
-            ├── entities-vector-geometries.md
-            ├── styling-materials-shaders.md
-            ├── animation-czml.md
-            ├── camera-picking-snapping.md
-            ├── clipping-clamping-classification.md
-            ├── postprocessing-atmosphere.md
-            └── pointcloud-voxel-splats.md
+            ├── getting-started-performance.md # 轻量 CesiumWidget、离线模式、HTML 悬浮层与按需渲染
+            ├── terrain-imagery.md             # World Terrain/ArcGIS/自定义地形与影像图层叠加
+            ├── 3dtiles-models.md              # ion/URL 3D Tiles、高度偏移、glTF 与 BIM 元数据
+            ├── entities-vector-geometries.md  # GeoJSON/MVT/BufferPrimitive 与基础几何体
+            ├── styling-materials-shaders.md   # 3D Tiles 样式、CustomShader 与自定义 GLSL 材质
+            ├── animation-czml.md              # SampledPositionProperty 路径插值、Clock 与 CZML
+            ├── camera-picking-snapping.md     # 相机控制、要素拾取高亮、pickAsync 与几何吸附
+            ├── clipping-clamping-classification.md # ClippingPolygon 裁剪、贴地与单体化分类
+            ├── postprocessing-atmosphere.md   # 自定义后处理、轮廓高亮、大气雾效与地下/2D 模式
+            └── pointcloud-voxel-splats.md     # 点云（Point Clouds）、体素（Voxels）与高斯泼溅（Gaussian Splats）
 ```
